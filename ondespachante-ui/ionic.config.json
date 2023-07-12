@@ -1,0 +1,7 @@
+{
+  "name": "ondespachante-ui",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
