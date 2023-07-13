@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL:'http://localhost:3000'
+  apiURL:'http://localhost:3000',
+  _key: 'S3Cr#7T'
 };
 
 /*
