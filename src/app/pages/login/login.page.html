@@ -1,10 +1,37 @@
-<ion-content [fullscreen]="true">
-  <ion-row>
-    <ion-col size="12" sizeLg="6">
-      Teste
+<ion-content  class="d-flex justify-content-center align-items-center ">
+  <header id="header" class="alt" class="d-flex flex-row justify-content-start">
+    <a routerLink="/index">Voltar</a>
+  </header>
+
+  <ion-row class="max-height-vh">
+    <ion-col size="12" sizeLg="6" class="flex-column d-flex align-items-center justify-content-center left-side">
+      <img src="./assets/icon/favicon.png">
+
+      <ion-card class="login-card">
+        <ion-list lines="none">
+          <ion-item class="mb-4">
+            <input class="form-control" type="text" placeholder="E-mail">
+          </ion-item>
+  
+          <ion-item>
+            <input class="form-control" type="password" placeholder="Senha">
+          </ion-item>
+          <br>
+          <ion-item>
+            <a>Esqueceu sua senha?</a>
+          </ion-item>
+          <br>
+          <ion-item>
+            <ion-button expand="block" slot="end" class="w-100">
+              Entrar
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+      
     </ion-col>
-    <ion-col size="12" sizeLg="6">
-      Teste 2
+    <ion-col size="6" class="d-flex justify-content-center align-items-center ion-hide-lg-down">
+      <img src="./assets/images/login-bg.jpg">
     </ion-col>
   </ion-row>
 </ion-content>
