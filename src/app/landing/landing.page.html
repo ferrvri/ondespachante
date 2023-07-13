@@ -1,0 +1,163 @@
+<div id="page-wrapper">
+
+  <header id="header" class="alt">
+    <img class="logo" src="./assets/icon/favicon.png">
+
+    <nav>
+      <a routerLink="/login">Minha conta</a>
+    </nav>
+  </header>
+
+  <section id="banner">
+    <div class="row d-flex justify-content-end">
+      <div class="col-12 col-lg-3 col-xl-3">
+        <div class="">
+          <section>
+            <h2 class="major">Consulte gratis!</h2>
+            <p>Consulte os débitos de graça!</p>
+            <p>Parcele suas <b>MULTAS, LICENCIAMENTO e MUITO MAIS</b></p>
+
+            <small>*Apenas placas registradas em <b>São Paulo</b></small>
+
+            <form class="form" method="post" action="#">
+              <div class="fields" style="margin-bottom: 0px;">
+                <div class="field">
+                  <label for="name">Renavam</label>
+                  <input type="text" name="name" id="name" placeholder="Renavam" />
+                </div>
+
+                <div class="field">
+                  <label for="placa">Placa</label>
+                  <input type="text" name="placa" id="placa" placeholder="Placa" />
+                </div>
+
+                <div class="field">
+                  <a href="#" class="button primary w-100">Consulte gratis!</a>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="inner">
+          <div class="logo"><span class="icon fa-gem"></span></div>
+          <h2>ON Despachante</h2>
+          <p>Conheça agora! O melhor ajudante para seu Despachante Online</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wrapper" class="mb-4">
+    <section id="one" class="wrapper spotlight reveal" [ngClass]="{'alt style1': isEven, 'style2': isOdd}"
+      *ngFor="let servico of servicos; let isEven = even; let isOdd = odd">
+      <div class="inner">
+        <a href="#" class="image">
+          <img src="./assets/images/pic01.jpg" alt="" />
+        </a>
+        <div class="content">
+          <h2 class="major"><b>{{servico.servico_title}}</b></h2>
+          <p>{{servico.servico_descricao}}</p>
+          <a href="#" class="special">Consultar</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="four" class="alt style1 reveal" >
+      <div class="row d-flex justify-content-center">
+        <div class="col-3">
+          <div class="card mb-4 p-4">
+            <section>
+              <h2 class="major">Consulte gratis!</h2>
+              <p>Consulte os débitos de graça!</p>
+              <p>Parcele suas <b>MULTAS, LICENCIAMENTO e MUITO MAIS</b></p>
+            </section>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card mb-4 p-4">
+            <section>
+              <h2 class="major">Consulte gratis!</h2>
+              <p>Consulte os débitos de graça!</p>
+              <p>Parcele suas <b>MULTAS, LICENCIAMENTO e MUITO MAIS</b></p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section id="four" class="wrapper alt style1">
+      <div class="inner">
+        <h2 class="major">Vitae phasellus</h2>
+        <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce
+          tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed
+          ac elementum arcu. Quisque placerat auctor laoreet.</p>
+        <section class="features">
+          <article>
+            <a href="#" class="image"><img src="./assets/images/pic04.jpg" alt="" /></a>
+            <h3 class="major">Sed feugiat lorem</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+            <a href="#" class="special">Learn more</a>
+          </article>
+          <article>
+            <a href="#" class="image"><img src="./assets/images/pic05.jpg" alt="" /></a>
+            <h3 class="major">Nisl placerat</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+            <a href="#" class="special">Learn more</a>
+          </article>
+          <article>
+            <a href="#" class="image"><img src="./assets/images/pic06.jpg" alt="" /></a>
+            <h3 class="major">Ante fermentum</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+            <a href="#" class="special">Learn more</a>
+          </article>
+          <article>
+            <a href="#" class="image"><img src="./assets/images/pic07.jpg" alt="" /></a>
+            <h3 class="major">Fusce consequat</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
+            <a href="#" class="special">Learn more</a>
+          </article>
+        </section>
+        <ul class="actions">
+          <li><a href="#" class="button">Browse All</a></li>
+        </ul>
+      </div>
+    </section> -->
+  </section>
+
+  <section id="footer" class="row d-flex justify-content-center footer">
+    <div class="col-3">
+      <h2 class="major">ON Despachante</h2>
+      <ul class="contact">
+        <li class="icon solid fa-home">
+          Untitled Inc<br />
+          1234 Somewhere Road Suite #2894<br />
+          Nashville, TN 00000-0000
+        </li>
+        <li class="icon solid fa-phone">(000) 000-0000</li>
+        <li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; Untitled Inc. All rights reserved.</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  
+    <div class="col-3">
+      <ul class="copyright">
+        <li>&copy; Untitled Inc. All rights reserved.</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  
+    <div class="col-3">
+      <ul class="copyright">
+        <li>&copy; Untitled Inc. All rights reserved.</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+

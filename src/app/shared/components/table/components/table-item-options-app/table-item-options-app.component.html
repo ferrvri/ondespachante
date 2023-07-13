@@ -1,0 +1,9 @@
+<ion-content class="ion-padding">
+  <ion-button *ngFor="let action of actions" (click)="this.wrapAppFunc(action.func!, item)"
+      class="mb-2 d-flex justify-content-evenly align-items-center">
+      <span>{{action.title}}</span>
+      <ng-container *ngIf="action.icon">
+          <i class="{{action.icon}}"></i>
+      </ng-container>
+  </ion-button>
+</ion-content>

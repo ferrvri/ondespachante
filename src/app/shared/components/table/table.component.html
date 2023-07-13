@@ -1,0 +1,132 @@
+<ion-content class="ion-padding">
+    <ion-grid>
+        <ion-row class="ion-justify-content-end">
+            <ion-col size="1" class="ion-display-flex ion-justify-content-end">
+                <ion-button *ngIf="showIncludeButton" (click)="onIncludeButtonClicked.emit()">
+                    <ion-icon name="add"></ion-icon>
+                </ion-button>
+            </ion-col>
+        </ion-row>
+
+        <ng-container *ngIf="filters.length > 0">
+            <form [formGroup]="filterFormGroup">
+                <ion-row>
+                    <ion-col size="12" sizeLg="3">
+                        <ion-item>
+                            <ion-label position="stacked">Filtros</ion-label>
+                            <ion-select interface="popover" formControlName="filterKey"
+                                placeholder="Selecione o filtro">
+                                <ion-select-option *ngFor="let filter of filters" [value]="filter.value">
+                                    {{filter.title}}
+                                </ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col size="12" sizeLg="7">
+                        <ion-item>
+                            <ion-label position="stacked">Termo a pesquisar</ion-label>
+                            <ion-input [disabled]="filterFormGroup.get('filterKey')!.value.length < 1" type="text"
+                                formControlName="filterTerm"></ion-input>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col size="12" sizeLg="1">
+                        <ion-button (click)="onFilterTermChange()" expand="full">
+                            Buscar
+                        </ion-button>
+                    </ion-col>
+
+                    <ion-col size="12" sizeLg="1">
+                        <ion-button (click)="clearFilter()" expand="full">
+                            Limpar
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </form>
+        </ng-container>
+        <br>
+        <br>
+        <ng-template #defaultList>
+            <ion-row *ngIf="this.dataSource.data.length > 0; else emptySet">
+                <ion-col size="12" style="overflow-x:auto">
+                    <table class="table table-responsive table-hover card-body">
+                        <thead>
+                            <tr>
+                                <th scope="col" *ngFor="let key of this.dataSource.cols">{{key}}</th>
+                                <th *ngIf="this.actions.length > 0">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of this.dataSource.data">
+                                <td *ngFor="let key of this.dataSource.cols">
+                                    {{item[key]}}
+                                </td>
+                                <ng-container *ngIf="item.__hideActions">
+                                    <td>Sem ação</td>
+                                </ng-container>
+                                <td *ngIf="this.actions.length > 0 && !item.__hideActions" ngbDropdown>
+                                    <button class="btn" ngbDropdownToggle>
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                    <div ngbDropdownMenu #dropdown aria-label="Opcoes do item">
+                                        <button ngbDropdownItem *ngFor="let action of actions"
+                                            (click)="action.func!(item)"
+                                            class="mb-2 d-flex justify-content-evenly align-items-center">
+                                            <span>{{action.title}}</span>
+                                            <ng-container *ngIf="action.icon">
+                                                <i class="{{action.icon}}"></i>
+                                            </ng-container>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div *ngIf="size > 0" class="col-12 d-flex justify-content-end">
+                        <ngb-pagination [(page)]="this.page" [pageSize]="this.pageSize"
+                            [collectionSize]="this.size"></ngb-pagination>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ng-template>
+
+        <ng-container *ngIf="isApp; else defaultList">
+            <ion-row>
+                <ion-col size="12" class="mb-4">
+                    <ion-list *ngIf="this.dataSource.data.length > 0; else emptySet">
+                        <ion-item *ngFor="let item of this.dataSource.data; let index = index">
+                            <ion-label>
+                                <h3>{{this.dataSource.cols![0]}}: {{item[this.dataSource.cols![0]]}}</h3>
+                                <p>{{this.dataSource.cols![1]}}: {{item[this.dataSource.cols![1]]}}</p>
+                                <p>{{this.dataSource.cols![2]}}: {{item[this.dataSource.cols![2]]}}</p>
+                                <p>{{this.dataSource.cols![3]}}: {{item[this.dataSource.cols![3]]}}</p>
+                            </ion-label>
+
+                            <div *ngIf="this.actions.length > 0 && !item.__hideActions">
+                                <ion-button #actionButton (click)="openPopover($event, item)">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </ion-button>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+
+                <ion-col size="12" class="mb-4">
+                    <div *ngIf="size > 0" class="col-12 d-flex justify-content-end">
+                        <ngb-pagination [(page)]="this.page" [pageSize]="this.pageSize"
+                            [collectionSize]="this.size"></ngb-pagination>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ng-container>
+
+        <ng-template #emptySet>
+            <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                <b class="p-4">Nenhum resultado encontrado</b>
+            </div>
+        </ng-template>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,49 @@
+#header {
+    background: #fafbff;
+}
+
+.logo {
+    margin: .5rem;
+}
+
+.form {
+    background: #f0f0f4;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.footer {
+    background: #282828;
+    color: white;
+
+    h2 {
+        color: white;
+        border-bottom: none;
+    }
+
+    div {
+        padding: 4rem;
+    }
+}
+
+@keyframes fade-in {
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
+}
+
+.reveal {
+    position: relative;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1.5s all ease;
+}
+
+.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+}
