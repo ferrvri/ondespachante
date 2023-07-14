@@ -1,0 +1,27 @@
+<ion-content>
+  <ion-grid style="height: 100%;">
+    <ion-row class="d-flex justify-content-between" style="height: 100%;">
+      <ion-col size="12">
+        <div style="margin: 5em;">
+          <ion-title>Alterar status do Orçamento</ion-title>
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-list>
+          <ion-item>
+            <ion-select [(ngModel)]="this.selectedStatus" interface="popover" cancelText="Cancelar" label="Selecione o Status">
+              <ion-select-option value="A">Aberto</ion-select-option>
+              <ion-select-option value="C">Encerrado</ion-select-option>
+              <ion-select-option value="F">Finalizado</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-button expand="full" (click)="this.change(selectedStatus)">Alterar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

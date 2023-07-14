@@ -13,29 +13,42 @@
       <div class="col-12 col-lg-3 col-xl-3">
         <div class="">
           <section>
-            <h2 class="major">Consulte gratis!</h2>
+            <h2 class="major text-white">Consulte gratis!</h2>
             <p>Consulte os débitos de graça!</p>
             <p>Parcele suas <b>MULTAS, LICENCIAMENTO e MUITO MAIS</b></p>
 
             <small>*Apenas placas registradas em <b>São Paulo</b></small>
 
-            <form class="form" method="post" action="#">
+            <form class="form" [formGroup]="ladingPageFormGroup">
               <div class="fields" style="margin-bottom: 0px;">
                 <div class="field">
                   <label for="name">Renavam</label>
-                  <input type="text" name="name" id="name" placeholder="Renavam" />
+                  <input type="text" name="name" id="name" placeholder="Renavam"
+                    class="text-black" mask="00000000000" formControlName="orcamento_renavam"/>
                 </div>
 
                 <div class="field">
                   <label for="placa">Placa</label>
-                  <input type="text" name="placa" id="placa" placeholder="Placa" />
+                  <input type="text" name="placa" id="placa" placeholder="Placa" class="text-black" 
+                    mask="SSS-0A00" formControlName="orcamento_placa"/>
                 </div>
 
                 <div class="field">
-                  <a href="#" class="button primary w-100">Consulte gratis!</a>
+                  <label for="placa">Whatsapp</label>
+                  <input type="text" name="placa" id="placa" placeholder="Whatsapp" 
+                    mask="(00) 0 0000-0000" maxlength="16" max="16" class="text-black" formControlName="orcamento_whatsapp"/>
+                </div>
+                
+                <div class="field">
+                  <button class="button primary w-100" (click)="submit()" [disabled]="this.loadingRequest">
+                    <ion-spinner *ngIf="this.loadingRequest"></ion-spinner>
+                    Consulte gratis!
+                  </button>
                 </div>
               </div>
             </form>
+
+            <small>Entraremos em contato em breve</small>
           </section>
         </div>
       </div>
@@ -43,10 +56,32 @@
       <div class="col-12 col-lg-6 ion-hide-lg-down">
         <div class="inner">
           <div class="logo"><span class="icon fa-gem"></span></div>
-          <h2>ON Despachante</h2>
+          <h2 class="text-white">ON Despachante</h2>
           <p>Conheça agora! O melhor ajudante para seu Despachante Online</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="row d-flex justify-content-center footer">
+    <div class="col-6 d-flex justify-content-center align-items-center p-5 position-relative">
+      <div class="col-12 col-lg-4 m-5">
+        <div class="card background-primary">
+          <div class="p-4">
+            <h2 class="major">Teste</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4 m-5">
+        <div class="card background-primary">
+          <div class="p-4">
+            <h2 class="major">Teste</h2>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="arrow down">\/</a>
     </div>
   </section>
 
@@ -55,7 +90,7 @@
       *ngFor="let servico of servicos; let isEven = even; let isOdd = odd">
       <div class="inner">
         <a href="#" class="image">
-          <img src="./assets/images/pic01.jpg" alt="" />
+          <img [src]="servico.servico_logo_url" alt="" />
         </a>
         <div class="content">
           <h2 class="major"><b>{{servico.servico_title}}</b></h2>
@@ -90,7 +125,7 @@
   </section>
 
   <section id="footer" class="row d-flex justify-content-center footer">
-    <div class="col-12 col-lg-3">
+    <div class="col-12 col-lg-3 p-5">
       <h2 class="major">ON Despachante</h2>
       <ul class="contact">
         <li class="icon solid fa-home">
@@ -106,15 +141,15 @@
         <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
     </div>
-  
-    <div class="col-12 col-lg-3">
+
+    <div class="col-12 col-lg-3 p-5">
       <ul class="copyright">
         <li>&copy; Untitled Inc. All rights reserved.</li>
         <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
     </div>
-  
-    <div class="col-12 col-lg-3">
+
+    <div class="col-12 col-lg-3 p-5">
       <ul class="copyright">
         <li>&copy; Untitled Inc. All rights reserved.</li>
         <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -122,4 +157,3 @@
     </div>
   </section>
 </div>
-

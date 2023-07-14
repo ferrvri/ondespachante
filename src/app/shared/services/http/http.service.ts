@@ -71,17 +71,8 @@ export class HttpService {
                 });
             }
 
-            let httpparams = new HttpParams();
-
-            if (params) {
-                Object.keys(params).forEach(key => {
-                    httpparams = httpparams.set(key, params[key]);
-                });
-            }
-
-            firstValueFrom(this._httpClient.put<T>(environment.apiURL + url, {
-                headers: httpheaders,
-                params: httpparams
+            firstValueFrom(this._httpClient.put<T>(environment.apiURL + url, params, {
+                headers: httpheaders
             })).then(data => resolve(data), e => reject(e));
         });
     }

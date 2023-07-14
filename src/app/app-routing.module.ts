@@ -18,7 +18,12 @@ const routes: Routes = [
   {
     path: 'sys',
     loadChildren: () => import('./pages/sys/sys.module').then( m => m.SysPageModule)
+  },
+  {
+    path: 'orcamentos',
+    loadChildren: () => import('./pages/sys/pages/orcamentos/orcamentos.module').then( m => m.OrcamentosPageModule)
   }
+
 ];
 
 @NgModule({

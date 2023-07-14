@@ -28,3 +28,16 @@
 .max-height-vh {
     height: 100vh;
 }
+
+.background-primary {
+    background: var(--ion-color-primary);
+}
+
+.background-secondary {
+    background: var(--ion-color-secondary);
+}
+
+.custom-alert .alert-wrapper {
+    background: #e5e5e5;
+    --max-width: 50%;
+}

@@ -1,0 +1,5 @@
+<ion-content>
+  <app-table [dataSource]="this.dataSource" title="Pedidos" [page]="this.pagination.page"
+    (pageChange)="handlePageChange($event)" [pageSize]="this.pagination.pageSize" [size]="this.pagination.size"
+    [actions]="this.actions" [filters]="tableFilters"></app-table>
+</ion-content>

@@ -66,12 +66,12 @@
                                     <td>Sem ação</td>
                                 </ng-container>
                                 <td *ngIf="this.actions.length > 0 && !item.__hideActions" ngbDropdown>
-                                    <button class="btn" ngbDropdownToggle>
+                                    <button class="btn text-black" ngbDropdownToggle>
                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                     </button>
 
-                                    <div ngbDropdownMenu #dropdown aria-label="Opcoes do item">
-                                        <button ngbDropdownItem *ngFor="let action of actions"
+                                    <div ngbDropdownMenu #dropdown aria-label="Opcoes do item" class="text-black">
+                                        <button ngbDropdownItem class="text-black" *ngFor="let action of actions"
                                             (click)="action.func!(item)"
                                             class="mb-2 d-flex justify-content-evenly align-items-center">
                                             <span>{{action.title}}</span>
