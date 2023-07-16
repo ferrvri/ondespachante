@@ -1,0 +1,66 @@
+<ion-grid>
+  <ion-row class="d-flex justify-content-center flex-column align-items-center">
+    <ion-col size="8">
+      <ion-list lines="none">
+        <form [formGroup]="form" class="m-4">
+          <ion-item *ngFor="let control of controls">
+            <ng-container [ngSwitch]="control.controlType" class="m-4 ">
+
+              <ng-container *ngSwitchCase="'text'">
+                <ng-container *ngIf="control.mask; else noMaskText">
+                  <div class="control w-100 m-2">
+                    <label>{{control.label}}</label>
+                    <input (blur)="control.blurred ? control.blurred(): null" type="text"
+                      [formControlName]="control.name!" [placeholder]="control.label" [readOnly]="control.disabled"
+                      [mask]="control.mask" [value]="control.value!" />
+                  </div>
+                </ng-container>
+
+                <ng-template #noMaskText>
+                  <div class="control w-100 m-2">
+                    <label>{{control.label}}</label>
+                    <input (blur)="control.blurred ? control.blurred(): null" type="text" [readOnly]="control.disabled"
+                      [formControlName]="control.name!" [placeholder]="control.label" [value]="control.value!"/>
+                  </div>
+                </ng-template>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'number'">
+                <ng-container *ngIf="control.mask; else noMaskNumber">
+                  <div class="control w-100 m-2">
+                    <label>{{control.label}}</label>
+                    <input (blur)="control.blurred ? control.blurred(): null" [readOnly]="control.disabled"
+                      type="number" [formControlName]="control.name!" [mask]="control.mask"
+                      [placeholder]="control.label" [value]="control.value!"/>
+                  </div>
+                </ng-container>
+                <ng-template #noMaskNumber>
+                  <div class="control w-100 m-2">
+                    <label>{{control.label}}</label>
+                    <input (blur)="control.blurred ? control.blurred(): null" [readOnly]="control.disabled"
+                      type="number" [formControlName]="control.name!" [placeholder]="control.label" [value]="control.value!"/>
+                  </div>
+                </ng-template>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'select'">
+                <ion-label position="floating">{{control.label}}</ion-label>
+                <ion-select interface="popover" [formControlName]="control.name!" [placeholder]="control.label"
+                  [disabled]="control.disabled!" [value]="control.value!">
+                  <ion-select-option *ngFor="let selectOption of control.selectOptions"
+                    [value]="selectOption.value">{{selectOption.name}}</ion-select-option>
+                </ion-select>
+              </ng-container>
+            </ng-container>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-col>
+
+    <ion-col size="4" class="d-flex justify-content-center align-items-center">
+      <ion-button expand="full" class="w-100" (click)="submitted()">
+        Enviar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

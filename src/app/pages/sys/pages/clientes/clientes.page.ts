@@ -1,15 +1,13 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import { AlterarStatusOrcamentoModalComponent } from 'src/app/shared/components/alterar-status-orcamento-modal/alterar-status-orcamento-modal.component';
 import { DataSource } from 'src/app/shared/components/table/extensions/data-source.interface';
 import { FilterOption } from 'src/app/shared/components/table/extensions/filter.option.interface';
 import { Pagination } from 'src/app/shared/components/table/extensions/pagination.interface';
 import { TableAction } from 'src/app/shared/components/table/extensions/table-action.interface';
 import { API_URLS } from 'src/app/shared/constants/api.urls.constant';
+import { ClienteViewModel } from 'src/app/shared/models/cliente/cliente.viewmodel';
 import { HttpResponse } from 'src/app/shared/models/http-response/http-response.model';
-import { OrcamentoModel } from 'src/app/shared/models/orcamento/orcamento.model';
 import { OrcamentoViewModel } from 'src/app/shared/models/orcamento/orcamento.viewmodel';
 import { AlertService } from 'src/app/shared/services/alert/alert.service';
 import { HttpService } from 'src/app/shared/services/http/http.service';
@@ -17,11 +15,11 @@ import { ModalService } from 'src/app/shared/services/modal/modal.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 
 @Component({
-  selector: 'app-orcamentos',
-  templateUrl: './orcamentos.page.html',
-  styleUrls: ['./orcamentos.page.scss'],
+  selector: 'app-clientes',
+  templateUrl: './clientes.page.html',
+  styleUrls: ['./clientes.page.scss'],
 })
-export class OrcamentosPage implements OnInit {
+export class ClientesPage implements OnInit {
 
   dataSource: DataSource<any> = {
     cols: [],
@@ -30,20 +28,22 @@ export class OrcamentosPage implements OnInit {
 
   pagination: Pagination = {
     page: 1,
-    pageSize: 10,
+    pageSize: 50,
     size: 10
   }
 
   tableFilters: FilterOption[] = [
     {
-      title: 'Status',
-      value: 'Status',
-      options: [
-        {
-          title: 'Aberto',
-          value: 'A'
-        }
-      ]
+      title: 'Nome',
+      value: 'Nome'
+    },
+    {
+      title: 'CPF',
+      value: 'CPF'
+    },
+    {
+      title: 'Whatsapp',
+      value: 'Whatsapp'
     }
   ];
 
@@ -54,7 +54,7 @@ export class OrcamentosPage implements OnInit {
 
   constructor(
     private _httpService: HttpService,
-    private _router: Router,
+    public _router: Router,
     private _toastService: ToastService,
     private _platform: Platform,
     private _alertService: AlertService,
@@ -73,31 +73,26 @@ export class OrcamentosPage implements OnInit {
 
     this.dataSource.cols = [
       'ID',
+      'Nome',
+      'CPF',
       'Whatsapp',
-      'Observação',
-      'Placa',
-      'Renavam',
-      'Status'
+      'CEP',
+      'Cidade',
+      'Rua',
+      'Bairro',
+      'Numero'
     ];
 
     this.actions = [
-      {
-        title: 'Gerar cliente',
-        func: (element: any) => this.generateCliente(element)
-      },
-      {
-        title: 'Alterar status',
-        func: (element: any) => this.changeStatus(element)
-      },
       {
         title: 'Enviar Whats',
         func: (element: any) => this.enviarWhats(element)
       }
     ];
 
-    url = API_URLS.Orcamento.All;
+    url = API_URLS.Cliente.All;
 
-    this._httpService.get<HttpResponse<OrcamentoViewModel[]>>(url, {}, { page, pageSize }).then(data => {
+    this._httpService.get<HttpResponse<ClienteViewModel[]>>(url, {}, { page, pageSize }).then(data => {
       this.dataSource.data = data.data;
       this.pagination.page = data.pagination.page;
       this.pagination.pageSize = data.pagination.pageSize;
@@ -116,16 +111,6 @@ export class OrcamentosPage implements OnInit {
   handlePageChange(page: number) {
     this.pagination.page = page;
     this.fetchData(page, this.pagination.pageSize);
-  }
-
-  changeStatus(element: OrcamentoViewModel) {
-    this._modalService.show<string>(AlterarStatusOrcamentoModalComponent, { orcamento: element }).then(data => {
-      this.changeOrcamentoStatus(element.ID, data);
-    });
-  }
-
-  generateCliente(orcamento: OrcamentoViewModel) {
-    this._router.navigate(['/sys/clientes/cadastro', { cliente_whatsapp: orcamento.Whatsapp }]);
   }
 
   enviarWhats(element: OrcamentoViewModel) {
@@ -150,9 +135,4 @@ export class OrcamentosPage implements OnInit {
     ]);
   }
 
-  changeOrcamentoStatus(orcamento_id: number, orcamento_status: string) {
-    this._httpService.put(API_URLS.Orcamento.UpdateStatus, { orcamento_id }, { orcamento_status }).then(data => {
-      this.fetchData(this.pagination.page, this.pagination.pageSize);
-    });
-  }
 }

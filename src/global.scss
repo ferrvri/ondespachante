@@ -41,3 +41,12 @@
     background: #e5e5e5;
     --max-width: 50%;
 }
+
+ion-select {
+    min-height: 44px;
+}
+
+.active-link {
+    background: #dcdcdc;
+    --background: #dcdcdc;
+}

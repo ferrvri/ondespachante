@@ -2,7 +2,8 @@ export const API_URLS = {
     Login: '/login',
     Cliente: {
         Search: '/cliente/search/:Nome',
-        All: '/cliente/all'
+        All: '/cliente/all',
+        Save: '/cliente'
     },
     Servicos: {
         All: '/servicos/all'
@@ -14,7 +15,8 @@ export const API_URLS = {
         UpdateStatus: '/orcamento/status/:orcamento_id',
         Delete: '/orcamento/:ID',
         Search: '/orcamento/:ID',
-        All: '/orcamento/all'
+        All: '/orcamento/all',
+        Filter: '/orcamento/filter'
     },
     Ui: {
         Menu: '/ui/menu'

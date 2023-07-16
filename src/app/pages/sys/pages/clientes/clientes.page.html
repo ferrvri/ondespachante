@@ -2,6 +2,6 @@
   <ng-container *ngIf="dataLoaded" >
     <app-table [dataSource]="this.dataSource" title="Pedidos" [page]="this.pagination.page"
       (pageChange)="handlePageChange($event)" [pageSize]="this.pagination.pageSize" [size]="this.pagination.size"
-      [actions]="this.actions" [filters]="tableFilters" (filtered)="onTableFilter($event)" [showIncludeButton]="true"></app-table>
+      [actions]="this.actions" [filters]="tableFilters" (filtered)="onTableFilter($event)" [showIncludeButton]="true" (onIncludeButtonClicked)="this._router.navigate(['/sys/clientes/cadastro'])"></app-table>
   </ng-container>
 </ion-content>

@@ -15,6 +15,10 @@ const routes: Routes = [
       {
         path: 'orcamentos',
         loadChildren: () => import('./pages/orcamentos/orcamentos.module').then(m => m.OrcamentosPageModule)
+      },
+      {
+        path: 'clientes',
+        loadChildren: () => import('./pages/clientes/clientes.module').then(m => m.ClientesPageModule)
       }
     ]
   }

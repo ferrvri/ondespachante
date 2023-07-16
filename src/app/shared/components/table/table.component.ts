@@ -36,7 +36,7 @@ export class TableComponent implements OnInit {
   }
 
   @Input() pageSize: number = 10;
-  @Input() size: number = 100;
+  @Input() size: number = 10;
 
   dataSourceOriginal: DataSource<any> = {
     data: []
@@ -54,12 +54,13 @@ export class TableComponent implements OnInit {
 
   isApp: boolean = false;
 
-
   constructor(
     private _platform: Platform,
     private popOverController: PopoverController
   ) {
-    this.isApp = _platform.is('mobile');
+    _platform.ready().then(_ => {
+      this.isApp = _platform.is('mobileweb') || _platform.is('mobile');
+    });
   }
 
   ngOnInit(): void {
@@ -70,20 +71,20 @@ export class TableComponent implements OnInit {
     this.isFiltered = true;
     this.filtered.emit(this.filterFormGroup.value);
 
-    // const formValue = this.filterFormGroup.value;
+    const formValue = this.filterFormGroup.value;
 
-    // if (formValue.filterTerm.length < 1) {
-    //   this.clearFilter();
-    // } else {
-    //   this.dataSource.data = this.dataSourceOriginal.data;
-    //   this.dataSource.data = this.dataSource.data.filter(e => {
-    //     return e[formValue.filterKey].toLowerCase().indexOf(formValue.filterTerm.toLowerCase()) != -1
-    //   });
-    // }
+    if (formValue.filterTerm.length < 1) {
+      this.clearFilter();
+    } else {
+      this.dataSource.data = this.dataSourceOriginal.data;
+      this.dataSource.data = this.dataSource.data.filter(e => {
+        return e[formValue.filterKey].toLowerCase().indexOf(formValue.filterTerm.toLowerCase()) != -1
+      });
+    }
   }
 
   async openPopover(event: any, item: any) {
-    const popover =  await this.popOverController.create({
+    const popover = await this.popOverController.create({
       component: TableItemOptionsAppComponent,
       componentProps: {
         actions: this.actions,
@@ -95,7 +96,7 @@ export class TableComponent implements OnInit {
     popover.present();
   }
 
-  
+
   clearFilter() {
     this.isFiltered = false;
     this.filtered.emit({

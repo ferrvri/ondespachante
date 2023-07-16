@@ -30,6 +30,7 @@ export class SysPage implements OnInit {
       this.menu.push(...data.data);
 
       this.menu.push({
+        icon: 'exit',
         title: 'Sair',
         action: () => this.logOut()
       });

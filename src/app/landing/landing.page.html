@@ -40,10 +40,10 @@
                 </div>
                 
                 <div class="field">
-                  <button class="button primary w-100" (click)="submit()" [disabled]="this.loadingRequest">
+                  <ion-button expand="block" (click)="submit()" [disabled]="this.loadingRequest">
                     <ion-spinner *ngIf="this.loadingRequest"></ion-spinner>
                     Consulte gratis!
-                  </button>
+                  </ion-button>
                 </div>
               </div>
             </form>

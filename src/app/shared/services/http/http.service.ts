@@ -14,6 +14,12 @@ export class HttpService {
         private _storageService: StorageService
     ) { }
 
+    rawGet<T>(url: string) {
+        return new Promise((resolve, reject) => {
+            firstValueFrom(this._httpClient.get<T>(url)).then(data => resolve(data), e => reject(e));
+        });
+    }
+
     get<T>(url: string, url_params?: any, query_params?: any): Promise<T> {
         const httpheaders = this.buildHeaders()
 

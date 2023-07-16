@@ -6,8 +6,9 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <ion-list>
-        <ion-item button *ngFor="let item of menu" (click)="item.action ? item.action(): this.gotoRouter(item.routerLink!)">
+      <ion-list lines="none">
+        <ion-item style="--background:  #fafcff; cursor: pointer;" *ngFor="let item of menu" (click)="item.action ? item.action(): this.gotoRouter(item.routerLink!)" [routerLink]="item.routerLink" routerLinkActive="active-link">
+          <ion-icon slot="start" [name]="item.icon" *ngIf="item.icon"></ion-icon>
           <ion-label>{{item.title}}</ion-label>
         </ion-item>
       </ion-list>
@@ -15,8 +16,8 @@
   </ion-menu>
 
   <div class="ion-page" id="main">
-    <ion-header>
-      <ion-toolbar>
+    <ion-header color="primary">
+      <ion-toolbar color="primary"> 
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
         </ion-buttons>
