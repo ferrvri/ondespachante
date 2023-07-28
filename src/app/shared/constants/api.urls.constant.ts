@@ -3,7 +3,8 @@ export const API_URLS = {
     Cliente: {
         Search: '/cliente/search/:Nome',
         All: '/cliente/all',
-        Save: '/cliente'
+        Save: '/cliente',
+        GetById: '/cliente/:Id'
     },
     Servicos: {
         All: '/servicos/all'

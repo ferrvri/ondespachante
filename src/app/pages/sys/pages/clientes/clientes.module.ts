@@ -10,6 +10,7 @@ import { ClientesPage } from './clientes.page';
 import { TablePageModule } from 'src/app/shared/components/table/table.module';
 import { CadastroClienteComponent } from './pages/cadastro-cliente/cadastro-cliente.component';
 import { EditPageModule } from 'src/app/shared/components/edit-page/edit-page.module';
+import { ClienteRepositoryService } from 'src/app/repositories/cliente-repository/cliente.repository.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,9 @@ import { EditPageModule } from 'src/app/shared/components/edit-page/edit-page.mo
     TablePageModule,
     EditPageModule
   ],
+  providers: [
+    ClienteRepositoryService
+  ],
   declarations: [ClientesPage, CadastroClienteComponent]
 })
-export class ClientesPageModule {}
+export class ClientesPageModule { }

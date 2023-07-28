@@ -11,18 +11,43 @@ import { debounceTime, finalize, Subscription } from 'rxjs';
 export class EditPageComponent implements OnInit {
 
 
-  @Input() controls: EditPageControl[] = [];
+  @Input() model: any;
   @Input() labels: string[] = [];
   @Input() form: FormGroup = new FormGroup({});
 
   @Output() submit: EventEmitter<any> = new EventEmitter();
 
+  controls: EditPageControl[] = [];
 
   constructor(
     private _fb: FormBuilder
-  ) { }
+  ) {
+    
+  }
 
   ngOnInit() {
+    const entries: [string, any][] = Object.entries(this.model);
+
+    for (let i = 0; i < entries.length; i++) {
+      this.controls.push({
+        controlType: entries[i][1].controlType,
+        label: entries[i][1].label,
+        name: entries[i][0],
+        mask: entries[i][1].mask,
+        selectOptions: entries[i][1].selectOptions,
+        required: entries[i][1].required,
+        disabled: entries[i][1].disabled,
+        id: entries[i][1].id,
+        blurred: entries[i][1].blurred,
+        onChange: entries[i][1].onChange,
+        value: entries[i][1].value
+      });
+    }
+    
+    this.createControls();
+  }
+
+  createControls() {
     for (let control of this.controls) {
       this.form.addControl(control.name!, this.createControl(control.required === true ? [Validators.required] : []));
 

@@ -85,6 +85,11 @@ export class ClientesPage implements OnInit {
 
     this.actions = [
       {
+        title: 'Editar',
+        icon: 'fa-edit',
+        func: (element: any) => this.editarCliente(element)
+      },
+      {
         title: 'Enviar Whats',
         func: (element: any) => this.enviarWhats(element)
       }
@@ -133,6 +138,11 @@ export class ClientesPage implements OnInit {
         name: 'msg'
       }
     ]);
+  }
+
+  editarCliente(element: ClienteViewModel) {
+    console.log(element)
+    this._router.navigate(['/sys/clientes/editar', {id: element.ID}]);
   }
 
 }

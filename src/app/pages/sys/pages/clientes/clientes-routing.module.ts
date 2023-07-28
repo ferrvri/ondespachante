@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'cadastro',
     component: CadastroClienteComponent
+  },
+  {
+    path: 'editar',
+    component: CadastroClienteComponent
   }
 ];
 
